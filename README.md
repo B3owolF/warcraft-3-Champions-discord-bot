@@ -13,11 +13,11 @@
 - create an .env file
 
 - write in the .env this variable DISCORD_TOKEN=token (your bot token)
-- 
+ 
 - write this variable also SEASON=3 (the season you want 1,2,3..etc)
 
 - **node:** `node src/index`
-- 
+ 
 # League List
 - Grand Master Master 1
 - Diamond 1  Platinum 1  Gold 1  Silver 1  Bronze 1
