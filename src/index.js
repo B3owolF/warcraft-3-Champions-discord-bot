@@ -1,3 +1,7 @@
+const { config } = require('dotenv');
+
+config();
+
 const { Client } = require('discord.js');
 const eventsMessage = require('./events/message');
 
