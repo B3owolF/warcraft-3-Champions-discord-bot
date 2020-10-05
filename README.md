@@ -55,7 +55,7 @@
 
 ### !channel
 
-- `!channel id``
+- `!channel id`
 -   with this command you can choose the channel where the bot can send messages you need to have an admin role (admin with lowercase)
 
 ### !delete 
