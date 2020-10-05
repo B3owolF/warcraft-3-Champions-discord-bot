@@ -67,5 +67,5 @@
 
 -   Just right click channel and left click copy id and
 you need developer mode activated
-![alt text](https://support.discord.com/hc/article_attachments/360008328491/TNSRPes1.jpg)
+![alt text](https://support-dev.discord.com/hc/article_attachments/360029908211/1.png)
 
