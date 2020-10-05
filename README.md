@@ -65,7 +65,7 @@
 
 ###   how to see the channel id
 
--   Just right click channel and left click copy id.
+-   Just right click channel and left click copy id and
 you need developer mode activated
 ![alt text](https://support.discord.com/hc/article_attachments/360008328491/TNSRPes1.jpg)
 
