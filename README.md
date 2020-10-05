@@ -13,11 +13,11 @@
 - create an .env file
 
 - write in the .env this variable DISCORD_TOKEN=token (your bot token)
- 
+- 
 - write this variable also SEASON=3 (the season you want 1,2,3..etc)
 
 - **node:** `node src/index`
- 
+- 
 # League List
 - Grand Master Master 1
 - Diamond 1  Platinum 1  Gold 1  Silver 1  Bronze 1
@@ -62,3 +62,10 @@
 
 - `!delete id`
 -   with this command you don't allow the bot to write to that channel (by default the bot doesn't write to any channel)
+
+###   how to see the channel id
+
+-   Just right click channel and left click copy id.
+you need developer mode activated
+![alt text](https://support.discord.com/hc/article_attachments/360008328491/TNSRPes1.jpg)
+
