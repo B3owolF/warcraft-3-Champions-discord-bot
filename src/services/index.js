@@ -27,7 +27,6 @@ const getStats = async (player, server) => {
 	);
 
 	const data = await response.json();
-	console.log(data);
 	return data;
 };
 
@@ -35,7 +34,47 @@ const getPlayerByName = async (player, server) => {
 	let response = await fetch(
 		`https://statistic-service.w3champions.com/api/ladder/search?gateWay=${server}&searchFor=${player}&season=${process.env.SEASON}`
 	);
-	return response.json();
+	let data = await response.json();
+
+	let playerObject = undefined;
+	let playersRp = [];
+	let players = [];
+	let rp;
+	player = player.toLowerCase().replace(/%23/gi, "#");
+
+	for(let i = 0; i < data.length; i++){
+		if(player == data[i].player.playerIds[0].name.toLowerCase() || player == data[i].player.playerIds[0].battleTag.toLowerCase()){
+			playerObject = data[i]
+			break;
+		}
+	}
+
+	for(let i = 0; i < data.length; i++){
+		if(player == data[i].player.playerIds[0].name.toLowerCase() || player == data[i].player.playerIds[0].battleTag.toLowerCase()){
+			players.push(data[i]);
+		}
+	}
+
+	if(players.length > 1){
+		for(let i = 0; i < data.length; i++){
+			playersRp.push(data[i].rankingPoints);
+		}
+		rp = Math.max(...playersRp);
+		for(let i = 0; i < data.length; i++){
+			if(player == data[i].player.playerIds[0].name.toLowerCase() || player == data[i].player.playerIds[0].battleTag.toLowerCase()){
+				if(data[i].rankingPoints === rp){
+					playerObject = data[i]
+					break;
+				}
+			}
+		}
+	}
+
+
+	if(playerObject === undefined){
+		return data[0];
+	}
+	return playerObject;
 };
 
 const getLeagues = async () => {

@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
 const { getLeagues } = require("../services/");
 
-const emojiUnd = "<:undead:762111221477670942>";
-const emojiOrc = "<:Orc:762111149516783637>";
-const emojiNe = "<:NE:762111289363005450>";
-const emojiHum = "<:Hum:762111044038033408>";
-const emojiRdm = "<:Rdm:762136144137158656>";
+const emojiUnd = "<:Undead:771391362595160084>";
+const emojiOrc = "<:ORC:771391078833061948>";
+const emojiNe = "<:NE:771390761052012645>";
+const emojiHum = "<:Hum:771391612663496725>";
+const emojiRdm = "<:RDM:771392710522437653>";
 const emojiGrandMaster = "<:GM:762322281371664385>";
 const emojiMaster = "<:master:762322420253065216>";
 const emojiDiamond = "<:Diamond:762323081041149982>";
@@ -25,7 +25,7 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 
 		for (let i = 0; i < leagues[indexLeague].leagues.length; i++) {
 			if (
-				stats[0].league ===
+				stats.league ===
 				leagues[indexLeague].leagues[i].id
 			) {
 				leagueName =
@@ -49,44 +49,44 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 			leagueName = emojiBronze;
 		}
 
-		embed.addField("Rank", stats[0].rankNumber, true);
+		embed.addField("Rank", stats.rankNumber, true);
 		embed.addField("Mode", "1v1", true);
 		embed.addField("League", leagueName, true);
 
-		if (stats[0].race === 1) {
+		if (stats.race === 1) {
 			iconRace = emojiHum;
 			avatar =
 				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/HUMAN_10.jpg";
-		} else if (stats[0].race === 2) {
+		} else if (stats.race === 2) {
 			iconRace = emojiOrc;
 			avatar =
 				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/ORC_8.jpg";
-		} else if (stats[0].race === 4) {
+		} else if (stats.race === 4) {
 			iconRace = emojiNe;
 			avatar =
 				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/NIGHT_ELF_10.jpg";
-		} else if (stats[0].race === 8) {
+		} else if (stats.race === 8) {
 			iconRace = emojiUnd;
 			avatar =
 				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/UNDEAD_9.jpg";
-		} else if (stats[0].race === 0) {
+		} else if (stats.race === 0) {
 			iconRace = emojiRdm;
 			avatar =
 				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/RANDOM_9.jpg";
 		}
 
-		if (stats[0].race === 1) {
+		if (stats.race === 1) {
 			race = "Human";
 			embed.addFields(
 				{
 					name: race,
 					value:
-						stats[0].player.wins +
+						stats.player.wins +
 						" - " +
-						stats[0].player.losses +
+						stats.player.losses +
 						"  (" +
 						Math.round(
-							stats[0].player
+							stats.player
 								.winrate * 100
 						) +
 						"%)",
@@ -94,27 +94,27 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 				},
 				{
 					name: "Mmr",
-					value: stats[0].player.mmr,
+					value: stats.player.mmr,
 					inline: true
 				},
 				{
 					name: "RP",
-					value: stats[0].rankingPoints,
+					value: stats.rankingPoints,
 					inline: true
 				}
 			);
-		} else if (stats[0].race === 2) {
+		} else if (stats.race === 2) {
 			race = "Orc";
 			embed.addFields(
 				{
 					name: race,
 					value:
-						stats[0].player.wins +
+						stats.player.wins +
 						" - " +
-						stats[0].player.losses +
+						stats.player.losses +
 						"  (" +
 						Math.round(
-							stats[0].player
+							stats.player
 								.winrate * 100
 						) +
 						"%)",
@@ -122,27 +122,27 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 				},
 				{
 					name: "Mmr",
-					value: stats[0].player.mmr,
+					value: stats.player.mmr,
 					inline: true
 				},
 				{
 					name: "RP",
-					value: stats[0].rankingPoints,
+					value: stats.rankingPoints,
 					inline: true
 				}
 			);
-		} else if (stats[0].race === 4) {
+		} else if (stats.race === 4) {
 			race = "Night";
 			embed.addFields(
 				{
 					name: race,
 					value:
-						stats[0].player.wins +
+						stats.player.wins +
 						" - " +
-						stats[0].player.losses +
+						stats.player.losses +
 						"  (" +
 						Math.round(
-							stats[0].player
+							stats.player
 								.winrate * 100
 						) +
 						"%)",
@@ -150,27 +150,27 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 				},
 				{
 					name: "Mmr",
-					value: stats[0].player.mmr,
+					value: stats.player.mmr,
 					inline: true
 				},
 				{
 					name: "RP",
-					value: stats[0].rankingPoints,
+					value: stats.rankingPoints,
 					inline: true
 				}
 			);
-		} else if (stats[0].race === 8) {
+		} else if (stats.race === 8) {
 			race = "Undead";
 			embed.addFields(
 				{
 					name: race,
 					value:
-						stats[0].player.wins +
+						stats.player.wins +
 						" - " +
-						stats[0].player.losses +
+						stats.player.losses +
 						"  (" +
 						Math.round(
-							stats[0].player
+							stats.player
 								.winrate * 100
 						) +
 						"%)",
@@ -178,27 +178,27 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 				},
 				{
 					name: "Mmr",
-					value: stats[0].player.mmr,
+					value: stats.player.mmr,
 					inline: true
 				},
 				{
 					name: "RP",
-					value: stats[0].rankingPoints,
+					value: stats.rankingPoints,
 					inline: true
 				}
 			);
-		} else if (stats[0].race === 0) {
+		} else if (stats.race === 0) {
 			race = "Random";
 			embed.addFields(
 				{
 					name: race,
 					value:
-						stats[0].player.wins +
+						stats.player.wins +
 						" - " +
 						stats[i].player.losses +
 						"  (" +
 						Math.round(
-							stats[0].player
+							stats.player
 								.winrate * 100
 						) +
 						"%)",
@@ -206,25 +206,25 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 				},
 				{
 					name: "Mmr",
-					value: stats[0].player.mmr,
+					value: stats.player.mmr,
 					inline: true
 				},
 				{
 					name: "RP",
-					value: stats[0].rankingPoints,
+					value: stats.rankingPoints,
 					inline: true
 				}
 			);
 		}
 
 		embed.setColor("#0099ff")
-			.setTitle(stats[0].player.name + " " + iconRace)
+			.setTitle(stats.player.name + " " + iconRace)
 			.setThumbnail(avatar);
 
 		return message.channel.send(embed);
 	} catch (error) {
 		console.log(error);
-		return message.channel.send("Wrong name or id");
+		return message.channel.send("This player has not played 1v1 games this season.");
 	}
 };
 
@@ -240,7 +240,7 @@ const playerByName = async (name, stats, message, indexLeague) => {
 
 		for (let i = 0; i < leagues[indexLeague].leagues.length; i++) {
 			if (
-				stats[0].league ===
+				stats.league ===
 				leagues[indexLeague].leagues[i].id
 			) {
 				leagueName =
@@ -264,44 +264,44 @@ const playerByName = async (name, stats, message, indexLeague) => {
 			leagueName = emojiBronze;
 		}
 
-		if (stats[0].player.race === 1) {
+		if (stats.player.race === 1) {
 			iconRace = emojiHum;
 			avatar =
 				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/HUMAN_10.jpg";
-		} else if (stats[0].player.race === 2) {
+		} else if (stats.player.race === 2) {
 			iconRace = emojiOrc;
 			avatar =
 				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/ORC_8.jpg";
-		} else if (stats[0].player.race === 4) {
+		} else if (stats.player.race === 4) {
 			iconRace = emojiNe;
 			avatar =
 				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/NIGHT_ELF_10.jpg";
-		} else if (stats[0].player.race === 8) {
+		} else if (stats.player.race === 8) {
 			iconRace = emojiUnd;
 			avatar =
 				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/UNDEAD_9.jpg";
-		} else if (stats[0].player.race === 0) {
+		} else if (stats.player.race === 0) {
 			iconRace = emojiRdm;
 			avatar =
 				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/RANDOM_9.jpg";
 		}
 
-		embed.addField("Rank", stats[0].rankNumber, true);
+		embed.addField("Rank", stats.rankNumber, true);
 		embed.addField("Mode", "1v1", true);
 		embed.addField("League", leagueName, true);
 
-		if (stats[0].player.race === 1) {
+		if (stats.player.race === 1) {
 			race = "Human";
 			embed.addFields(
 				{
 					name: race,
 					value:
-						stats[0].player.wins +
+						stats.player.wins +
 						" - " +
-						stats[0].player.losses +
+						stats.player.losses +
 						"  (" +
 						Math.round(
-							stats[0].player
+							stats.player
 								.winrate * 100
 						) +
 						"%)",
@@ -309,27 +309,27 @@ const playerByName = async (name, stats, message, indexLeague) => {
 				},
 				{
 					name: "Mmr",
-					value: stats[0].player.mmr,
+					value: stats.player.mmr,
 					inline: true
 				},
 				{
 					name: "RP",
-					value: stats[0].rankingPoints,
+					value: stats.rankingPoints,
 					inline: true
 				}
 			);
-		} else if (stats[0].race === 2) {
+		} else if (stats.race === 2) {
 			race = "Orc";
 			embed.addFields(
 				{
 					name: race,
 					value:
-						stats[0].player.wins +
+						stats.player.wins +
 						" - " +
-						stats[0].player.losses +
+						stats.player.losses +
 						"  (" +
 						Math.round(
-							stats[0].player
+							stats.player
 								.winrate * 100
 						) +
 						"%)",
@@ -337,27 +337,27 @@ const playerByName = async (name, stats, message, indexLeague) => {
 				},
 				{
 					name: "Mmr",
-					value: stats[0].player.mmr,
+					value: stats.player.mmr,
 					inline: true
 				},
 				{
 					name: "RP",
-					value: stats[0].rankingPoints,
+					value: stats.rankingPoints,
 					inline: true
 				}
 			);
-		} else if (stats[0].race === 4) {
+		} else if (stats.race === 4) {
 			race = "Night";
 			embed.addFields(
 				{
 					name: race,
 					value:
-						stats[0].player.wins +
+						stats.player.wins +
 						" - " +
-						stats[0].player.losses +
+						stats.player.losses +
 						"  (" +
 						Math.round(
-							stats[0].player
+							stats.player
 								.winrate * 100
 						) +
 						"%)",
@@ -365,27 +365,27 @@ const playerByName = async (name, stats, message, indexLeague) => {
 				},
 				{
 					name: "Mmr",
-					value: stats[0].player.mmr,
+					value: stats.player.mmr,
 					inline: true
 				},
 				{
 					name: "RP",
-					value: stats[0].rankingPoints,
+					value: stats.rankingPoints,
 					inline: true
 				}
 			);
-		} else if (stats[0].race === 8) {
+		} else if (stats.race === 8) {
 			race = "Undead";
 			embed.addFields(
 				{
 					name: race,
 					value:
-						stats[0].player.wins +
+						stats.player.wins +
 						" - " +
-						stats[0].player.losses +
+						stats.player.losses +
 						"  (" +
 						Math.round(
-							stats[0].player
+							stats.player
 								.winrate * 100
 						) +
 						"%)",
@@ -393,27 +393,27 @@ const playerByName = async (name, stats, message, indexLeague) => {
 				},
 				{
 					name: "Mmr",
-					value: stats[0].player.mmr,
+					value: stats.player.mmr,
 					inline: true
 				},
 				{
 					name: "RP",
-					value: stats[0].rankingPoints,
+					value: stats.rankingPoints,
 					inline: true
 				}
 			);
-		} else if (stats[0].race === 0) {
+		} else if (stats.race === 0) {
 			race = "Random";
 			embed.addFields(
 				{
 					name: race,
 					value:
-						stats[0].player.wins +
+						stats.player.wins +
 						" - " +
-						stats[0].player.losses +
+						stats.player.losses +
 						"  (" +
 						Math.round(
-							stats[0].player
+							stats.player
 								.winrate * 100
 						) +
 						"%)",
@@ -421,25 +421,25 @@ const playerByName = async (name, stats, message, indexLeague) => {
 				},
 				{
 					name: "Mmr",
-					value: stats[0].player.mmr,
+					value: stats.player.mmr,
 					inline: true
 				},
 				{
 					name: "RP",
-					value: stats[0].rankingPoints,
+					value: stats.rankingPoints,
 					inline: true
 				}
 			);
 		}
 
 		embed.setColor("#0099ff")
-			.setTitle(stats[0].player.name + " " + iconRace)
+			.setTitle(stats.player.name + " " + iconRace)
 			.setThumbnail(avatar);
 
 		return message.channel.send(embed);
 	} catch (error) {
 		console.log(error);
-		return message.channel.send("Wrong name or id");
+		return message.channel.send("This player has not played 1v1 games this season.");
 	}
 };
 
