@@ -432,9 +432,13 @@ const playerByName = async (name, stats, message, indexLeague) => {
 			);
 		}
 
+    let battleTag = stats.player.playerIds[0].battleTag;
+		battleTag = battleTag.replace(/#/gi, "%23");		
+
 		embed.setColor("#0099ff")
 			.setTitle(stats.player.name + " " + iconRace)
-			.setThumbnail(avatar);
+			.setThumbnail(avatar)
+      .addField("View profile in w3champions",	`[Click here](https://www.w3champions.com/player/${battleTag})`)
 
 		return message.channel.send(embed);
 	} catch (error) {
