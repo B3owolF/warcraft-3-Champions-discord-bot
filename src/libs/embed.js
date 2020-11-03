@@ -24,12 +24,8 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 		const leagues = await getLeagues();
 
 		for (let i = 0; i < leagues[indexLeague].leagues.length; i++) {
-			if (
-				stats.league ===
-				leagues[indexLeague].leagues[i].id
-			) {
-				leagueName =
-					leagues[indexLeague].leagues[i].name;
+			if (stats.league === leagues[indexLeague].leagues[i].id) {
+				leagueName = leagues[indexLeague].leagues[i].name;
 			}
 		}
 
@@ -55,24 +51,19 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 
 		if (stats.race === 1) {
 			iconRace = emojiHum;
-			avatar =
-				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/HUMAN_10.jpg";
+			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/HUMAN_10.jpg";
 		} else if (stats.race === 2) {
 			iconRace = emojiOrc;
-			avatar =
-				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/ORC_8.jpg";
+			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/ORC_8.jpg";
 		} else if (stats.race === 4) {
 			iconRace = emojiNe;
-			avatar =
-				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/NIGHT_ELF_10.jpg";
+			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/NIGHT_ELF_10.jpg";
 		} else if (stats.race === 8) {
 			iconRace = emojiUnd;
-			avatar =
-				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/UNDEAD_9.jpg";
+			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/UNDEAD_9.jpg";
 		} else if (stats.race === 0) {
 			iconRace = emojiRdm;
-			avatar =
-				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/RANDOM_9.jpg";
+			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/RANDOM_9.jpg";
 		}
 
 		if (stats.race === 1) {
@@ -85,10 +76,7 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 						" - " +
 						stats.player.losses +
 						"  (" +
-						Math.round(
-							stats.player
-								.winrate * 100
-						) +
+						Math.round(stats.player.winrate * 100) +
 						"%)",
 					inline: true
 				},
@@ -113,10 +101,7 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 						" - " +
 						stats.player.losses +
 						"  (" +
-						Math.round(
-							stats.player
-								.winrate * 100
-						) +
+						Math.round(stats.player.winrate * 100) +
 						"%)",
 					inline: true
 				},
@@ -141,10 +126,7 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 						" - " +
 						stats.player.losses +
 						"  (" +
-						Math.round(
-							stats.player
-								.winrate * 100
-						) +
+						Math.round(stats.player.winrate * 100) +
 						"%)",
 					inline: true
 				},
@@ -169,10 +151,7 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 						" - " +
 						stats.player.losses +
 						"  (" +
-						Math.round(
-							stats.player
-								.winrate * 100
-						) +
+						Math.round(stats.player.winrate * 100) +
 						"%)",
 					inline: true
 				},
@@ -195,12 +174,9 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 					value:
 						stats.player.wins +
 						" - " +
-						stats[i].player.losses +
+						stats.player.losses +
 						"  (" +
-						Math.round(
-							stats.player
-								.winrate * 100
-						) +
+						Math.round(stats.player.winrate * 100) +
 						"%)",
 					inline: true
 				},
@@ -217,9 +193,13 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 			);
 		}
 
+		let battleTag = stats.player.playerIds[0].battleTag;
+		battleTag = battleTag.replace(/#/gi, "%23");
+
 		embed.setColor("#0099ff")
 			.setTitle(stats.player.name + " " + iconRace)
-			.setThumbnail(avatar);
+			.setThumbnail(avatar)
+			.addField("View profile in w3champions", `[Click here](https://www.w3champions.com/player/${battleTag})`);
 
 		return message.channel.send(embed);
 	} catch (error) {
@@ -239,12 +219,8 @@ const playerByName = async (name, stats, message, indexLeague) => {
 		const leagues = await getLeagues();
 
 		for (let i = 0; i < leagues[indexLeague].leagues.length; i++) {
-			if (
-				stats.league ===
-				leagues[indexLeague].leagues[i].id
-			) {
-				leagueName =
-					leagues[indexLeague].leagues[i].name;
+			if (stats.league === leagues[indexLeague].leagues[i].id) {
+				leagueName = leagues[indexLeague].leagues[i].name;
 			}
 		}
 
@@ -266,24 +242,19 @@ const playerByName = async (name, stats, message, indexLeague) => {
 
 		if (stats.player.race === 1) {
 			iconRace = emojiHum;
-			avatar =
-				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/HUMAN_10.jpg";
+			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/HUMAN_10.jpg";
 		} else if (stats.player.race === 2) {
 			iconRace = emojiOrc;
-			avatar =
-				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/ORC_8.jpg";
+			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/ORC_8.jpg";
 		} else if (stats.player.race === 4) {
 			iconRace = emojiNe;
-			avatar =
-				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/NIGHT_ELF_10.jpg";
+			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/NIGHT_ELF_10.jpg";
 		} else if (stats.player.race === 8) {
 			iconRace = emojiUnd;
-			avatar =
-				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/UNDEAD_9.jpg";
+			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/UNDEAD_9.jpg";
 		} else if (stats.player.race === 0) {
 			iconRace = emojiRdm;
-			avatar =
-				"https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/RANDOM_9.jpg";
+			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/RANDOM_9.jpg";
 		}
 
 		embed.addField("Rank", stats.rankNumber, true);
@@ -300,10 +271,7 @@ const playerByName = async (name, stats, message, indexLeague) => {
 						" - " +
 						stats.player.losses +
 						"  (" +
-						Math.round(
-							stats.player
-								.winrate * 100
-						) +
+						Math.round(stats.player.winrate * 100) +
 						"%)",
 					inline: true
 				},
@@ -328,10 +296,7 @@ const playerByName = async (name, stats, message, indexLeague) => {
 						" - " +
 						stats.player.losses +
 						"  (" +
-						Math.round(
-							stats.player
-								.winrate * 100
-						) +
+						Math.round(stats.player.winrate * 100) +
 						"%)",
 					inline: true
 				},
@@ -356,10 +321,7 @@ const playerByName = async (name, stats, message, indexLeague) => {
 						" - " +
 						stats.player.losses +
 						"  (" +
-						Math.round(
-							stats.player
-								.winrate * 100
-						) +
+						Math.round(stats.player.winrate * 100) +
 						"%)",
 					inline: true
 				},
@@ -384,10 +346,7 @@ const playerByName = async (name, stats, message, indexLeague) => {
 						" - " +
 						stats.player.losses +
 						"  (" +
-						Math.round(
-							stats.player
-								.winrate * 100
-						) +
+						Math.round(stats.player.winrate * 100) +
 						"%)",
 					inline: true
 				},
@@ -412,10 +371,7 @@ const playerByName = async (name, stats, message, indexLeague) => {
 						" - " +
 						stats.player.losses +
 						"  (" +
-						Math.round(
-							stats.player
-								.winrate * 100
-						) +
+						Math.round(stats.player.winrate * 100) +
 						"%)",
 					inline: true
 				},
@@ -432,13 +388,13 @@ const playerByName = async (name, stats, message, indexLeague) => {
 			);
 		}
 
-    let battleTag = stats.player.playerIds[0].battleTag;
-		battleTag = battleTag.replace(/#/gi, "%23");		
+		let battleTag = stats.player.playerIds[0].battleTag;
+		battleTag = battleTag.replace(/#/gi, "%23");
 
 		embed.setColor("#0099ff")
 			.setTitle(stats.player.name + " " + iconRace)
 			.setThumbnail(avatar)
-      .addField("View profile in w3champions",	`[Click here](https://www.w3champions.com/player/${battleTag})`)
+			.addField("View profile in w3champions", `[Click here](https://www.w3champions.com/player/${battleTag})`);
 
 		return message.channel.send(embed);
 	} catch (error) {
@@ -452,16 +408,11 @@ const matchEmbed = (player, message) => {
 
 	embed.setColor("#0099ff")
 		.setTitle("Game")
-		.setThumbnail(
-			"https://www.w3champions.com/img/grandmaster.9613f56f.png"
-		)
+		.setThumbnail("https://www.w3champions.com/img/grandmaster.9613f56f.png")
 		.addFields(
 			{
 				name: "Match",
-				value:
-					player.teams[0].players[0].battleTag +
-					"  VS  " +
-					player.teams[1].players[0].battleTag
+				value: player.teams[0].players[0].battleTag + "  VS  " + player.teams[1].players[0].battleTag
 			},
 			{ name: "Map", value: player.map }
 		);
@@ -474,7 +425,9 @@ const rankingEmbed = (ranking, message, img) => {
 	let embed3 = new Discord.MessageEmbed();
 	let embed4 = new Discord.MessageEmbed();
 
-	embed.setColor("#0099ff").setTitle("RANKING").setThumbnail(img);
+	embed.setColor("#0099ff")
+		.setTitle("RANKING")
+		.setThumbnail(img);
 
 	ranking.map((player, i) => {
 		if (i < 25) {
@@ -494,18 +447,14 @@ const rankingEmbed = (ranking, message, img) => {
 				if (i < 75) {
 					embed3.addFields({
 						name: player.player1Id,
-						value:
-							"Rank: " +
-							player.rankNumber,
+						value: "Rank: " + player.rankNumber,
 						inline: true
 					});
 				} else {
 					if (i < 100) {
 						embed4.addFields({
 							name: player.player1Id,
-							value:
-								"Rank: " +
-								player.rankNumber,
+							value: "Rank: " + player.rankNumber,
 							inline: true
 						});
 					}
@@ -535,44 +484,39 @@ const matchesEmbed = (matchesList, message) => {
 	let embed = new Discord.MessageEmbed()
 		.setColor("#0099ff")
 		.setTitle("MATCHES")
-		.setThumbnail(
-			"https://www.w3champions.com/img/grandmaster.9613f56f.png"
-		);
+		.setThumbnail("https://www.w3champions.com/img/grandmaster.9613f56f.png");
 
 	for (let i = 0; i < matchesList.matches.length; i++) {
 		embed.addFields({
 			name: "Match",
-			value:
-				matchesList.matches[i].teams[0].players[0]
-					.battleTag +
-				" VS " +
-				matchesList.matches[i].teams[1].players[0]
-					.battleTag
+			value: matchesList.matches[i].teams[0].players[0].battleTag + " VS " + matchesList.matches[i].teams[1].players[0].battleTag
 		});
 	}
 	message.channel.send(embed);
 };
 
-const helpEmbed = (message) => {
+const helpEmbed = message => {
 	let embed = new Discord.MessageEmbed();
-	embed.setColor("#0099ff").setTitle("Commands").addFields(
-		{
-			name: "!profile name battleTag",
-			value: "Example: !profile Grubby"
-		},
-		{
-			name: "!vs name battleTag",
-			value: "Example: !vs Grubby 1278"
-		},
-		{
-			name: "!Ranking league server",
-			value: "Example: !Ranking Grand Master Europe"
-		},
-		{
-			name: "!Matches server",
-			value: "Example: !Matches Europe"
-		}
-	);
+	embed.setColor("#0099ff")
+		.setTitle("Commands")
+		.addFields(
+			{
+				name: "!profile name battleTag",
+				value: "Example: !profile Grubby"
+			},
+			{
+				name: "!vs name battleTag",
+				value: "Example: !vs Grubby 1278"
+			},
+			{
+				name: "!Ranking league server",
+				value: "Example: !Ranking Grand Master Europe"
+			},
+			{
+				name: "!Matches server",
+				value: "Example: !Matches Europe"
+			}
+		);
 	message.channel.send(embed);
 };
 
