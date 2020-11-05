@@ -4,9 +4,11 @@ const showStats = require("../libs/showStats");
 const showOponent = require("../libs/showOponent");
 const ranking = require("../libs/Ranking");
 const matches = require("../libs/matches");
-const { getLeagues, getPlayerByName, getStatsHeros } = require("../services");
+const { getLeagues, getPlayerByName, getStatsHeros, getScore } = require("../services");
 const { playerEmbed, playerByName } = require("../libs/embed");
 const canvasHeroesStats = require("../libs/canvas/canvasHeroesStats");
+const getScoreOfMatches = require("../libs/getScoreOfMatches");
+const canvasScore = require("../libs/canvas/canvasScore");
 
 const { helpEmbed } = require("../libs/embed");
 
@@ -14,17 +16,18 @@ const heroesNames = {
 	bm: "blademaster",
 	sh: "shadowhunter",
 	tc: "taurenchieftain",
+	fs: "farseer",			
 	dk: "deathknight",
 	lich: "lich",
 	dl: "dreadlord",
 	cl: "cryptLord",
 	kotg: "keeperofthegrove",
 	potm: "priestessofthemoon",
-	warden: "waden",
+	warden: "warden",
 	paladin: "paladin",
 	am: "archmage",
 	mk: "mountainking",
-	blm: "bloodmage",
+	blm: "sorceror",
 	bem: "beastmaster",
 	fl: "firelord",
 	dr: "bansheeranger",
@@ -43,7 +46,9 @@ let channels = [
 	"761821925366169620",
 	"578877620037484549",
 	"762353907832979477",
-	"762402365160161300"
+	"762402365160161300",
+  "445218410738089986",
+	"770973297143447633"			
 ];
 
 const channelAllowed = message => {
@@ -284,6 +289,29 @@ const eventsMessage = client => {
 				message.channel.send(image);
 			} catch (err) {
 				console.log(err);
+			}
+		}
+	});
+
+	client.on("message", async message => {
+		if (message.content.startsWith(prefix + "score")) {
+			try {
+				const args = message.content
+					.slice(prefix.length)
+					.trim()
+					.split(/ +/g);
+				if (args[1] === args[3]) {
+					return message.channel.send("do not write the same name");
+				}
+				const matches = await getScore(args[1], args[3]);
+				if(matches.matches.length === 0){
+				  return message.channel.send("no statistics found");
+				}			
+				const score = getScoreOfMatches(matches.matches, args[1], args[3]);
+				const image = await canvasScore(score);
+				message.channel.send(image);
+			} catch (err) {
+				message.channel.send("no statistics found");
 			}
 		}
 	});

@@ -1,15 +1,15 @@
-const { config } = require('dotenv');
+const { config } = require("dotenv");
 
 config();
 
-const { Client } = require('discord.js');
-const eventsMessage = require('./events/message');
+const { Client } = require("discord.js");
+const eventsMessage = require("./events/message");
 
 const client = new Client();
 
-client.on('ready', () => {
-    client.user.setActivity('!help');
-    console.log('bot is ready');
+client.on("ready", () => {
+	client.user.setActivity("!help");
+	console.log("bot is ready");
 });
 
 eventsMessage(client);

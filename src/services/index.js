@@ -89,6 +89,14 @@ const getStatsHeros = async (hero1, hero2, hero3, hero4, hero5, hero6) => {
 	return await response.json();
 };
 
+const getScore = async (playerOne, playerTwo) => {
+	const response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=20&offset=0&opponentId=${playerTwo}&pageSize=50&season=4`
+	);
+	const data = await response.json();
+	return data;
+};
+
 module.exports = {
 	getDataRankings,
 	getMatches,
@@ -96,5 +104,6 @@ module.exports = {
 	getStats,
 	getLeagues,
 	getPlayerByName,
-	getStatsHeros
+	getStatsHeros,
+	getScore
 };

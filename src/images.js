@@ -25,8 +25,13 @@ hero.pl = "https://www.w3champions.com/img/pitlord.5440e70a.png";
 hero.nsw = "https://www.w3champions.com/img/seawitch.a5226e9b.png";
 hero.tinker = "https://www.w3champions.com/img/tinker.04662773.png";
 hero.alchemist = "https://www.w3champions.com/img/alchemist.f624263a.png";
-hero.background = "https://coolbackgrounds.io/images/backgrounds/black/black-radial-gradient-bb05ed79.jpg"
+hero.background = "https://coolbackgrounds.io/images/backgrounds/black/black-radial-gradient-bb05ed79.jpg";
 hero.undefined = "https://www.w3champions.com/img/none.e9b22af6.png";
+hero.race1 = "https://www.w3champions.com/img/HUMAN.86b68278.png";
+hero.race2 = "https://www.w3champions.com/img/ORC.fe8d30a3.png";
+hero.race8 = "https://www.w3champions.com/img/UNDEAD.eedab6ad.png";
+hero.race4 = "https://www.w3champions.com/img/NIGHT_ELF.58a510d9.png";
+hero.race0 = "https://www.w3champions.com/img/RANDOM.f67c1233.png";
 
 const loadImagesCanvas = async () => {
 	for (const property in hero) {
@@ -35,7 +40,7 @@ const loadImagesCanvas = async () => {
 };
 
 loadImagesCanvas().then(() => {
-				console.log(hero)
-})
+	console.log(hero);
+});
 
 module.exports = hero;
