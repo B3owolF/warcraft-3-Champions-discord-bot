@@ -17,7 +17,7 @@ const emojiBronze = "<:Bronze:762322183589855295>";
 const playerEmbed = async (name, stats, message, indexLeague) => {
 	try {
 		let embed = new Discord.MessageEmbed();
-		let avatar;
+		let avatar = " ";
 		let race;
 		let leagueName;
 		let iconRace;
@@ -64,6 +64,20 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 		} else if (stats.race === 0) {
 			iconRace = emojiRdm;
 			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/RANDOM_9.jpg";
+		}
+		let battleTag = stats.player.playerIds[0].battleTag;
+		battleTag = battleTag.replace(/#/gi, "%23");
+
+		if (avatar === " ") {
+			let newEmbed = new Discord.MessageEmbed();
+
+			newEmbed.setColor("#0099ff")
+				.setTitle(stats.player.name)
+				.setThumbnail("https://www.w3champions.com/img/all.d725e22d.png")
+				.addField("Message", "You have to play 5 games, GL HF!")
+				.addField("View profile in w3champions", `[Click here](https://www.w3champions.com/player/${battleTag})`);
+
+			return message.channel.send(newEmbed);
 		}
 
 		if (stats.race === 1) {
@@ -193,9 +207,6 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 			);
 		}
 
-		let battleTag = stats.player.playerIds[0].battleTag;
-		battleTag = battleTag.replace(/#/gi, "%23");
-
 		embed.setColor("#0099ff")
 			.setTitle(stats.player.name + " " + iconRace)
 			.setThumbnail(avatar)
@@ -211,7 +222,7 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 const playerByName = async (name, stats, message, indexLeague) => {
 	try {
 		let embed = new Discord.MessageEmbed();
-		let avatar;
+		let avatar = " ";
 		let race;
 		let leagueName;
 		let iconRace;
@@ -256,6 +267,20 @@ const playerByName = async (name, stats, message, indexLeague) => {
 			iconRace = emojiRdm;
 			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/RANDOM_9.jpg";
 		}
+		let battleTag = stats.player.playerIds[0].battleTag;
+		battleTag = battleTag.replace(/#/gi, "%23");
+
+		if (avatar === " ") {
+			let newEmbed = new Discord.MessageEmbed();
+
+			newEmbed.setColor("#0099ff")
+				.setTitle(stats.player.name)
+				.setThumbnail("https://www.w3champions.com/img/all.d725e22d.png")
+				.addField("Message", "You have to play 5 games, GL HF!")
+				.addField("View profile in w3champions", `[Click here](https://www.w3champions.com/player/${battleTag})`);
+
+			return message.channel.send(newEmbed);
+		}
 
 		embed.addField("Rank", stats.rankNumber, true);
 		embed.addField("Mode", "1v1", true);
@@ -387,9 +412,6 @@ const playerByName = async (name, stats, message, indexLeague) => {
 				}
 			);
 		}
-
-		let battleTag = stats.player.playerIds[0].battleTag;
-		battleTag = battleTag.replace(/#/gi, "%23");
 
 		embed.setColor("#0099ff")
 			.setTitle(stats.player.name + " " + iconRace)
@@ -501,7 +523,7 @@ const helpEmbed = message => {
 		.setTitle("Commands")
 		.addFields(
 			{
-				name: "!profile name battleTag",
+				name: "!profile or !stats name",
 				value: "Example: !profile Grubby"
 			},
 			{
@@ -515,6 +537,26 @@ const helpEmbed = message => {
 			{
 				name: "!Matches server",
 				value: "Example: !Matches Europe"
+			},
+			{
+				name: "!score playerOne vs playerTwo",
+				value: "Example: !score grubby vs xlord"
+			},
+			{
+				name: "!detail id",
+				value: "Example: !detail 5fb02f27ef7438b9a522715b"
+			},
+			{
+				name: "!statsbymode or !sbm name",
+				value: "Example: !statsbymode grubby"
+			},
+			{
+				name: "!statsbyrace or !sbr name",
+				value: "Example: !statsbyrace grubby"
+			},
+			{
+				name: "!matchhistory or !mh name",
+				example: "!mh grubby"
 			}
 		);
 	message.channel.send(embed);
