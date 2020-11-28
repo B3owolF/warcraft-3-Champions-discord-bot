@@ -543,6 +543,14 @@ const helpEmbed = message => {
 				value: "Example: !score grubby vs xlord"
 			},
 			{
+				name: "!herolist",
+				value: "!herolist"
+			},
+			{
+				name: "!statshero hero vs hero",
+				value: "!statshero bm vs am"
+			},
+			{
 				name: "!detail id",
 				value: "Example: !detail 5fb02f27ef7438b9a522715b"
 			},
@@ -556,7 +564,11 @@ const helpEmbed = message => {
 			},
 			{
 				name: "!matchhistory or !mh name",
-				example: "!mh grubby"
+				value: "Example: !mh grubby"
+			},
+			{
+				name: "!winrates or !wr",
+				value: "example: !wr grandmaster or !wr grandmaster lastrefuge or just !wr"
 			}
 		);
 	message.channel.send(embed);

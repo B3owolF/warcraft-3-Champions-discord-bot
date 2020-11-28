@@ -1,7 +1,6 @@
 const herosImage = require("../../images");
 const { MessageAttachment } = require("discord.js");
 const Canvas = require("canvas");
-const hero = require("../../images");
 
 const canvasHeroesStats = async (firstHeros, secondHeroes, statsHeroes) => {	
 
@@ -35,6 +34,4 @@ const canvasHeroesStats = async (firstHeros, secondHeroes, statsHeroes) => {
 	return attachment;
 };
 
-module.exports = canvasHeroesStats;
-module.exports = canvasHeroesStats;
 module.exports = canvasHeroesStats;

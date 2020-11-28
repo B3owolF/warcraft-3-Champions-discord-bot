@@ -60,13 +60,14 @@ hero.concealedhill = "https://liquipedia.net/commons/images/8/8f/Concealed_Hill_
 hero.echoisles = "https://liquipedia.net/commons/images/7/7d/Echo_Isles.png";
 hero.twistedmeadows = "https://liquipedia.net/commons/images/e/ee/Twisted_Meadows.png";
 hero.turtlerock = "https://liquipedia.net/commons/images/1/14/Turtle_Rock.png";
-hero.autumnleaves = "https://liquipedia.net/commons/images/e/e8/Wc3AutumnLeaves.png";
+hero.autumnleaves201016 = "https://liquipedia.net/commons/images/e/e8/Wc3AutumnLeaves.png";
 hero.amazonia = "https://liquipedia.net/commons/images/3/38/Amazonia.png";
 hero.lastrefuge = "https://liquipedia.net/commons/images/9/9a/Last_Refuge.png";
 hero.terenasstand = "https://liquipedia.net/commons/images/f/fe/Terenas_Stand_LV.png";
 hero.northernisles = "https://liquipedia.net/commons/images/4/45/Northern_Isles.png";
-hero.ruinsofazshara = "https://liquipedia.net/commons/images/4/47/RuinsOfAzshara.png";
-
+hero.ruinsofazshara201016 = "https://liquipedia.net/commons/images/4/47/RuinsOfAzshara.png";
+hero.Overall = "https://www.w3champions.com/img/all.d725e22d.png";
+hero.all = "https://www.w3champions.com/img/all.d725e22d.png";
 
 const loadImagesCanvas = async () => {
 	for (const property in hero) {
