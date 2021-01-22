@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const { getLeagues } = require("../services/");
+const fetch  = require("node-fetch");
 
 const emojiUnd = "<:Undead:771391362595160084>";
 const emojiOrc = "<:ORC:771391078833061948>";
@@ -13,6 +14,16 @@ const emojiPlatinum = "<:platinum:762322351161212969>";
 const emojiGold = "<:gold:762322312321826848>";
 const emojiSilver = "<:silver:762322243434053653>";
 const emojiBronze = "<:Bronze:762322183589855295>";
+
+const raceOfPicture = {
+  race32: "SPECIAL",
+  race1: "HUMAN",
+  race2: "ORC",
+  race4: "NIGHT_ELF",
+  race8: "UNDEAD",
+  race0: "RANDOM",
+  race16: "TOTAL"
+}
 
 const playerEmbed = async (name, stats, message, indexLeague) => {
 	try {
@@ -65,6 +76,25 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 			iconRace = emojiRdm;
 			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/RANDOM_9.jpg";
 		}
+
+    let tag = stats.player.playerIds[0].battleTag;
+    tag = tag.replace(/#/gi, "%23");
+
+    const response = await fetch(`https://statistic-service.w3champions.com/api/personal-settings/${tag}`);
+
+    const personalSettings = await response.json();
+
+    let image;
+
+    if(personalSettings.profilePicture.isClassic){
+      image = `https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/classic/${raceOfPicture["race" + personalSettings.profilePicture.race]}_${personalSettings.profilePicture.pictureId}.jpg`;
+    }if(raceOfPicture["race" + personalSettings.profilePicture.race] === "SPECIAL"){
+      image = `https://w3champions.wc3.tools/prod/integration/icons/specialAvatars/SPECIAL_${personalSettings.profilePicture.pictureId}.jpg`
+    }if(personalSettings.profilePicture.isClassic === false && raceOfPicture["race" + personalSettings.profilePicture.race] !== "SPECIAL"){
+      image = `https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/${raceOfPicture["race" + personalSettings.profilePicture.race]}_${personalSettings.profilePicture.pictureId}.jpg`
+    }
+
+
 		let battleTag = stats.player.playerIds[0].battleTag;
 		battleTag = battleTag.replace(/#/gi, "%23");
 
@@ -209,7 +239,7 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
 
 		embed.setColor("#0099ff")
 			.setTitle(stats.player.name + " " + iconRace)
-			.setThumbnail(avatar)
+			.setThumbnail(image)
 			.addField("View profile in w3champions", `[Click here](https://www.w3champions.com/player/${battleTag})`);
 
 		return message.channel.send(embed);
@@ -267,6 +297,25 @@ const playerByName = async (name, stats, message, indexLeague) => {
 			iconRace = emojiRdm;
 			avatar = "https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/RANDOM_9.jpg";
 		}
+
+let tag = stats.player.playerIds[0].battleTag;
+    tag = tag.replace(/#/gi, "%23");
+
+    const response = await fetch(`https://statistic-service.w3champions.com/api/personal-settings/${tag}`);
+
+    const personalSettings = await response.json();
+
+    let image;
+
+    if(personalSettings.profilePicture.isClassic){
+      image = `https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/classic/${raceOfPicture["race" + personalSettings.profilePicture.race]}_${personalSettings.profilePicture.pictureId}.jpg`;
+    }if(raceOfPicture["race" + personalSettings.profilePicture.race] === "SPECIAL"){
+      image = `https://w3champions.wc3.tools/prod/integration/icons/specialAvatars/SPECIAL_${personalSettings.profilePicture.pictureId}.jpg`
+    }if(personalSettings.profilePicture.isClassic === false && raceOfPicture["race" + personalSettings.profilePicture.race] !== "SPECIAL"){
+      image = `https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/${raceOfPicture["race" + personalSettings.profilePicture.race]}_${personalSettings.profilePicture.pictureId}.jpg`
+    }
+
+
 		let battleTag = stats.player.playerIds[0].battleTag;
 		battleTag = battleTag.replace(/#/gi, "%23");
 
@@ -415,7 +464,7 @@ const playerByName = async (name, stats, message, indexLeague) => {
 
 		embed.setColor("#0099ff")
 			.setTitle(stats.player.name + " " + iconRace)
-			.setThumbnail(avatar)
+			.setThumbnail(image)
 			.addField("View profile in w3champions", `[Click here](https://www.w3champions.com/player/${battleTag})`);
 
 		return message.channel.send(embed);

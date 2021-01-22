@@ -12,7 +12,7 @@ module.exports = {
 			let player = args[0];
 			const id = args[1];
 			let server = args[2];
-			let indexLeague = 0;
+			let indexLeague = 2;
 
 			const regEx = /^\w+#\d+$/i;
 
@@ -20,10 +20,10 @@ module.exports = {
 				if (id === "america") {
 					indexLeague = 1;
 					let stats = await getPlayerByName(player, 10);
-					return playerByName(player, stats, message, indexLeague);
+					return await playerByName(player, stats, message, indexLeague);
 				} else {
 					let stats = await getPlayerByName(player, 20);
-					return playerByName(player, stats, message, indexLeague);
+					return await playerByName(player, stats, message, indexLeague);
 				}
 			}
 
@@ -34,16 +34,16 @@ module.exports = {
 			} else if (!id || id === "europe") {
 				player = player.replace(/#/gi, "%23");
 				server = "europe";
-				indexLeague = 0;
+				indexLeague = 2;
 			}
 
 
 			if (server === "america") {
 				let objectPlayer = await showStats(player, 10, message);
-				playerEmbed(objectPlayer.player, objectPlayer.stats, message, indexLeague);
+				await playerEmbed(objectPlayer.player, objectPlayer.stats, message, indexLeague);
 			} else {
 				let objectPlayer = await showStats(player, 20, message);
-				playerEmbed(objectPlayer.player, objectPlayer.stats, message, indexLeague);
+				await playerEmbed(objectPlayer.player, objectPlayer.stats, message, indexLeague);
 			}
 		} catch (err) {
 			console.log(err);

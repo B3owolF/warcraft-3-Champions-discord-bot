@@ -3,6 +3,7 @@ const herosImages = require("../../images");
 const { MessageAttachment } = require("discord.js");
 
 module.exports = (human, orc, undead, nightElf, map) => {
+  Canvas.registerFont('MesloLGS NF Regular.ttf', { family: 'MesloLGS NF Regular.ttf' });
 	const canvas = Canvas.createCanvas(1000, 1200);
 	const ctx = canvas.getContext("2d");
 
@@ -33,7 +34,7 @@ module.exports = (human, orc, undead, nightElf, map) => {
 	ctx.drawImage(herosImages[`race${nightElf.race}`], 800, 200, 200, 200);
 
 	//ratios
-	ctx.font = "50px Arial";
+	ctx.font = "50px MesloLGS NF Bold.ttf";
 	ctx.fillStyle = "#fff";
 
 	ctx.fillText(" - ",250, 520);

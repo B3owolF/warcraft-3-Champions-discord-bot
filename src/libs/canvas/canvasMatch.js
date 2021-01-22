@@ -3,11 +3,12 @@ const { MessageAttachment } = require("discord.js");
 const Canvas = require("canvas");
 
 const canvasMatch = stats => {
+  Canvas.registerFont('MesloLGS NF Regular.ttf', { family: 'MesloLGS NF Regular.ttf' });
 	const canvas = Canvas.createCanvas(900, 700);
 	const ctx = canvas.getContext("2d");
 
 	const unitsKilled = "Units Killed";
-	const unitsProduced = "UnitsProduced";
+	const unitsProduced = "Units Produced";
 	const goldMined = "Gold Mined";
 	const lumberHarvested = "Lumber Harvested";
 	const upkeepLost = "Upkeep Lost";
@@ -15,17 +16,17 @@ const canvasMatch = stats => {
 
 	ctx.drawImage(herosImages["background"], 0, 0, canvas.width, canvas.height);
 
-	ctx.font = "50px Arial";
+	ctx.font = "45px MesloLGS NF Bold.ttf";
 	ctx.fillStyle = "#85BB65";
-	ctx.fillText(stats.match.teams[0].players[0].battleTag, canvas.width / 2 - ctx.measureText(stats.playerScores[0].battleTag).width / 2, 50);
+	ctx.fillText(stats.match.teams[0].players[0].battleTag.replace(/#\w+/gi, ""), canvas.width / 2 - ctx.measureText(stats.playerScores[0].battleTag.replace(/#\w+/gi, "")).width / 2, 50);
 
-	ctx.font = "50px Arial";
+	ctx.font = "45px MesloLGS NF Bold.ttf";
 	ctx.fillStyle = "#fff";
-	ctx.fillText(stats.playerScores[0].battleTag, 180 - ctx.measureText(stats.playerScores[0].battleTag).width / 2, 100);
+	ctx.fillText(stats.playerScores[0].battleTag.replace(/#\w+/gi, ""), 180 - ctx.measureText(stats.playerScores[0].battleTag.replace(/#\w+/gi, "")).width / 2, 100);
 
-	ctx.font = "50px Arial";
+	ctx.font = "45px MesloLGS NF Bold.ttf";
 	ctx.fillStyle = "#fff";
-	ctx.fillText(stats.playerScores[1].battleTag, canvas.width - 180 - ctx.measureText(stats.playerScores[1].battleTag).width / 2, 100);
+	ctx.fillText(stats.playerScores[1].battleTag.replace(/#\w+/gi, ""), canvas.width - 180 - ctx.measureText(stats.playerScores[1].battleTag.replace(/#\w+/gi, "")).width / 2, 100);
 
 	//hero1 team1
 	ctx.drawImage(herosImages[stats.playerScores[0].heroes[0] ? stats.playerScores[0].heroes[0].icon : undefined], 100 - 90 / 2, 180, 90, 90);

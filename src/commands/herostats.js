@@ -3,29 +3,50 @@ const canvasHeroesStats = require("../libs/canvas/canvasHeroesStats");
 
 const heroesNames = {
   bm: "blademaster",
+  blademaster: "blademaster",
   sh: "shadowhunter",
+  shadowhunter: "shadowhunter",
   tc: "taurenchieftain",
+  taurenchieftain: "taurenchieftain",
   fs: "farseer",
+  farseer: "farseer",
   dk: "deathknight",
+  dk: "deathknight",
+  deathknight: "deathknight",
   lich: "lich",
   dl: "dreadlord",
+  dreadlord: "dreadlord",
   cl: "cryptlord",
+  cryptlord: "cryptlord",
   dh: "demonhunter",
+  demonhunter: "demonhunter",
   kotg: "keeperofthegrove",
+  keeperofthegrove: "keeperofthegrove",
   potm: "priestessofthemoon",
+  priestessofthemoon: "priestessofthemoon",
   warden: "warden",
   paladin: "paladin",
+  pala: "pala",
   am: "archmage",
+  archmage: "archmage",
   mk: "mountainking",
+  mountainking: "mountainking",
   blm: "sorceror",
+  bloodmage: "sorceror",
   bem: "beastmaster",
   fl: "avatarofflame",
+  firelord: "avatarofflame",
   dr: "bansheeranger",
+  darkranger: "bansheeranger",
   nsw: "seawitch",
+  naga: "seawitch",
   pb: "pandarenbrewmaster",
+  pandarenbrewmaster: "pandarenbrewmaster",
+  panda: "pandarenbrewmaster",
   tinker: "tinker",
   alchemist: "alchemist",
   pl: "pitlord",
+  pitlord: "pitlord",
   undefined: "none",
   all: "all"
 };
@@ -39,6 +60,10 @@ module.exports = {
       let firstHeroes = [];
       let secondHeroes = [];
       let index = args.indexOf("vs");
+
+      if(!args[0]){
+        return message.channel.send("you must write at least one hero's name")
+      }
 
       if (args.find(arg => arg === "v")) {
         index = args.indexOf("v");
@@ -68,7 +93,7 @@ module.exports = {
         if (Math.round(stats.winrate * 100) === 0) {
           return message.channel.send("no statistics found");
         }
-        const image = await canvasHeroesStats(firstHeroes, secondHeroes, stats);
+        const image = canvasHeroesStats(firstHeroes, secondHeroes, stats);
         return message.channel.send(image);
 
       }
@@ -94,7 +119,7 @@ module.exports = {
         if (Math.round(stats.winrate * 100) === 0) {
           return message.channel.send("no statistics found");
         }
-        const image = await canvasHeroesStats(firstHeroes, secondHeroes, stats);
+        const image = canvasHeroesStats(firstHeroes, secondHeroes, stats);
         return message.channel.send(image);
       }
 
@@ -118,7 +143,7 @@ module.exports = {
       if (Math.round(stats.winrate * 100) === 0) {
         return message.channel.send("no statistics found");
       }
-      const image = await canvasHeroesStats(firstHeroes, secondHeroes, stats);
+      const image = canvasHeroesStats(firstHeroes, secondHeroes, stats);
       return message.channel.send(image);
     } catch (err) {
       console.log(err);

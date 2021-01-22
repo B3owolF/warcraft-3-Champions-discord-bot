@@ -1,10 +1,22 @@
+const express = require("express");
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
+app.listen(3000, () => {
+  console.log("server on port 3000")
+
+});
+
 const { config } = require("dotenv");
 
 config();
 
 const { Client, Collection } = require("discord.js");
 const eventsMessage = require("./events/message");
-const getWinrates = require("./services/getStatsOfPatchMapsAndRace");
 const fs = require("fs");
 const path = require("path");
 
@@ -22,9 +34,6 @@ for (let file of files) {
 client.on("ready", async () => {
 	client.user.setActivity("!help");
 	console.log("bot is ready");
-	const dataOfWinrate = await getWinrates();
-	console.log(dataOfWinrate);
-	module.exports = { dataOfWinrate };
 });
 
 eventsMessage(client);

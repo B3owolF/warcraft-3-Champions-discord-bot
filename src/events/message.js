@@ -23,7 +23,7 @@ const eventsMessage = client => {
 
 			let commandFound = client.commands.get(command) || client.commands.find(c => c.alias && c.alias.includes(command));
 
-			if (args.length > 1) args.forEach((arg, i) => (args[i] = args[i].toLowerCase()));
+			if (args.length > 0) args.forEach((arg, i) => (args[i] = args[i].toLowerCase()));
 			if (!commandFound) return;
 
 			return commandFound.run(client, message, args);

@@ -16,6 +16,9 @@ module.exports = {
 				if (statsByModeFound.length === 0) {
 					statsByModeFound = await getStatsByMode(player, 10);
 				}
+        if(statsByModeFound.length === 0){
+          return message.channel.send("in this season you don't have games")
+        }
 				const embed = embedStatsByMode(statsByModeFound);
 				return message.channel.send(embed);
 			}

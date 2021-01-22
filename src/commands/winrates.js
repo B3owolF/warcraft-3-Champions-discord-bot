@@ -1,4 +1,5 @@
 const canvasWinrates = require("../libs/canvas/canvasWinrates");
+const getWinrates = require("../services/getStatsOfPatchMapsAndRace");
 
 const mmrOfLeagues = {
 	grandmaster: 2200,
@@ -13,12 +14,21 @@ const mmrOfLeagues = {
 
 const maps = {
 	az: "amazonia",
-	ts: "tenerasstand",
+  amazonia: "amazonia",
+	ts: "terenasstand",
+  terenasstand: "terenasstand",
 	tm: "twistedmeadows",
+  twistedmeadows: "twistedmeadows",
 	ni: "northernisles",
+  northernisles: "northernisles",
 	ch: "concealedhill",
+  concealedhill: "concealedhill",
 	lr: "lastrefuge",
+  lastrefuge: "lastrefuge",
 	ei: "echoisles",
+  echoisles: "echoisles",
+  tr: "turtlerock",
+  turtlerock: "turtlerock",
 	undefined: "Overall"
 };
 
@@ -48,16 +58,16 @@ module.exports = {
 			const map = args[1];
 			let ratio;
 			let image;
-			const { dataOfWinrate } = require("../index");
+			const dataOfWinrate = await getWinrates();
 
 			if ((!mmr && !map) || (mmr && map)) {
 				ratio = getRatio(mmr, map, dataOfWinrate);
 				image = canvasWinrates(ratio[1], ratio[2], ratio[3], ratio[4], maps[map]);
-			} else if (typeof mmr !== "number") {
+			} else if (typeof mmrOfLeagues[mmr] !== "number") {
 				ratio = getRatio(undefined, mmr, dataOfWinrate);
 				image = canvasWinrates(ratio[1], ratio[2], ratio[3], ratio[4], maps[mmr]);
 			} else {
-				ratio = getRatio(mmr, map, dataOfWinrate);
+				ratio = getRatio(mmr, undefined, dataOfWinrate);
 				image = canvasWinrates(ratio[1], ratio[2], ratio[3], ratio[4], maps[map]);
 			}
 			// hum, orc, undead, elf

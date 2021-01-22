@@ -9,9 +9,10 @@ module.exports = {
 			const id = args[0];
 			const matchFound = await getMatch(id);
 			const image = canvasMatch(matchFound);
-			message.channel.send(image);
+			return message.channel.send(image);
 		} catch (err) {
 			console.log(err);
+      return message.channel.send("error");
 		}
 	}
 };

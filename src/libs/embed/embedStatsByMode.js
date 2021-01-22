@@ -43,7 +43,7 @@ const embedStatsByMode = statsByMode => {
 			},
 			{
 				name: "League",
-				value: embedStatsByModeObject["league" + statsByMode[index].leagueId] + " #" + statsByMode[index].rank,
+				value: embedStatsByModeObject["league" + statsByMode[index].leagueOrder] + " #" + statsByMode[index].rank,
 				inline: true
 			},
 			{

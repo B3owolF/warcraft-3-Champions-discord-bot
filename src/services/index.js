@@ -59,6 +59,16 @@ const getPlayerByName = async (player, server) => {
 		}
 	}
 
+  for (let i = 0; i < data.length; i++) {
+		if (
+			player.toLowerCase() === data[i].player.playerIds[0].name.toLowerCase() ||
+			player.toLowerCase() === data[i].player.playerIds[0].battleTag.toLowerCase()
+		) {
+			playerObject = data[i];
+			break;
+		}
+	}
+
 	if (players.length > 1) {
 		for (let i = 0; i < data.length; i++) {
 			playersRp.push(data[i].rankingPoints);
@@ -89,18 +99,50 @@ const getLeagues = async () => {
 };
 
 const getStatsHeros = async (hero1, hero2, hero3, hero4, hero5, hero6) => {
+  try{
 	const response = await fetch(
 		`https://statistic-service.w3champions.com/api/w3c-stats/heroes-winrate?first=${hero1}&second=${hero2}&third=${hero3}&opFirst=${hero4}&opSecond=${hero5}&opThird=${hero6}`
 	);
 	return await response.json();
+  }catch(err){
+    console.log(err);
+  }
 };
 
 const getScore = async (playerOne, playerTwo, server) => {
-	const response = await fetch(
-		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&season=4`
+  try{
+	let response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=${process.env.SEASON}`
 	);
-	const data = await response.json();
+	let data = await response.json();
+  if(data.matches.length === 0){
+    response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=4`
+	);
+  data = await response.json();
+  }
+  if(data.matches.length === 0){
+    response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=3`
+	);
+  data = await response.json();
+  }
+  if(data.matches.length === 0){
+    response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=2`
+	);
+  data = await response.json();
+  }
+  if(data.matches.length === 0){
+    response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=1`
+	);
+   data = await response.json();
+  }
 	return data;
+  }catch(err){
+    console.log(err);
+  }
 };
 
 module.exports = {

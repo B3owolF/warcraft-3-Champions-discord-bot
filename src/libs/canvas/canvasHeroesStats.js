@@ -2,10 +2,12 @@ const herosImage = require("../../images");
 const { MessageAttachment } = require("discord.js");
 const Canvas = require("canvas");
 
-const canvasHeroesStats = async (firstHeros, secondHeroes, statsHeroes) => {	
+const canvasHeroesStats = (firstHeros, secondHeroes, statsHeroes) => {
+  try{	
 
 	const canvas = Canvas.createCanvas(900, 450);
 	const ctx = canvas.getContext("2d");
+  Canvas.registerFont('MesloLGS NF Regular.ttf', { family: 'MesloLGS NF Regular.ttf' });
 
   ctx.drawImage(herosImage["background"], 0, 0, canvas.width, canvas.height);
 
@@ -21,17 +23,21 @@ const canvasHeroesStats = async (firstHeros, secondHeroes, statsHeroes) => {
 
 	ctx.drawImage(herosImage[secondHeroes[2]], 775, 25, 100, 100);
 	
-  ctx.font = "50px Arial";
+  ctx.font = "50px MesloLGS NF Bold.ttf";
 	ctx.fillStyle = "#fff";			
   ctx.fillText(Math.round(statsHeroes.winrate * 100) + "%", 400, 200);
 
-	ctx.font = "50px Arial";
-	ctx.fillStyle = "#fff";
-	ctx.fillText(statsHeroes.wins + " - " + statsHeroes.losses, 370, 300);			
+	ctx.font = "50px MesloLGS NF Bold.ttf";
+	ctx.fillStyle = "#fff";		
+
+  ctx.fillText(statsHeroes.wins + " - " + statsHeroes.losses, canvas.width/2 - ctx.measureText(statsHeroes.wins + " - " + statsHeroes.losses).width/2, 300);	
 				
 	const attachment = new MessageAttachment(canvas.toBuffer(), "image.png");
 
 	return attachment;
+  }catch(err){
+    console.log(err);
+  }
 };
 
 module.exports = canvasHeroesStats;

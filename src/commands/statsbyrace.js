@@ -15,7 +15,9 @@ module.exports = {
 				let statsFound = await getStatsByRace(player, 20);
 				if (statsFound.length === 0) {
 					statsFound = await getStatsByRace(player, 10);
-				}
+				}if(statsFound.length === 0){
+          return message.channel.send("in this season you don't have games");
+        }
 				const name = player.replace(/%23/gi, "#"); 
 				const embed = embedStatsByRace(statsFound, name);
 				return message.channel.send(embed);
