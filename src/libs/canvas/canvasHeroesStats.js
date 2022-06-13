@@ -4,7 +4,6 @@ const Canvas = require("canvas");
 
 const canvasHeroesStats = (firstHeros, secondHeroes, statsHeroes) => {
   try{	
-
 	const canvas = Canvas.createCanvas(900, 450);
 	const ctx = canvas.getContext("2d");
   Canvas.registerFont('MesloLGS NF Regular.ttf', { family: 'MesloLGS NF Regular.ttf' });

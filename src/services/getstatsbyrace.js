@@ -6,7 +6,41 @@ const getStatsByRace = async (player, server) => {
 			`https://statistic-service.w3champions.com/api/players/${player}/race-stats?gateWay=${server}&season=${process.env.SEASON}`
 		);
 		let data = await response.json();
-		return data;
+
+    if(data.length === 0){
+      response = await fetch(
+			`https://statistic-service.w3champions.com/api/players/${player}/race-stats?gateWay=${server}&season=9`
+		);
+		  data = await response.json();
+    }
+
+    if(data.length === 0){
+      response = await fetch(
+			`https://statistic-service.w3champions.com/api/players/${player}/race-stats?gateWay=${server}&season=8`
+		);
+		  data = await response.json();
+    }
+
+    if(data.length === 0){
+      response = await fetch(
+			`https://statistic-service.w3champions.com/api/players/${player}/race-stats?gateWay=${server}&season=7`
+		);
+		  data = await response.json();
+    }
+
+    if(data.length === 0){
+      response = await fetch(
+			`https://statistic-service.w3champions.com/api/players/${player}/race-stats?gateWay=${server}&season=6`
+		);
+		  data = await response.json();
+    }
+
+    if(data.length === 0){
+      response = await fetch(
+			`https://statistic-service.w3champions.com/api/players/${player}/race-stats?gateWay=${server}&season=5`
+		);
+		  data = await response.json();
+    }
 
     if(data.length === 0){
       response = await fetch(
@@ -25,6 +59,13 @@ const getStatsByRace = async (player, server) => {
     if(data.length === 0){
       response = await fetch(
 			`https://statistic-service.w3champions.com/api/players/${player}/race-stats?gateWay=${server}&season=2`
+		);
+		  data = await response.json();
+    }
+
+    if(data.length === 0){
+      response = await fetch(
+			`https://statistic-service.w3champions.com/api/players/${player}/race-stats?gateWay=${server}&season=1`
 		);
 		  data = await response.json();
     }

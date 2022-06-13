@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const { helperBattleTag } = require('../libs/helper')
 
 const getDataRankings = async (seccion, server) => {
 	const response = await fetch(
@@ -93,6 +94,44 @@ const getPlayerByName = async (player, server) => {
 	return playerObject;
 };
 
+const getPlayerByJustName = async (player, server) => {
+
+  const regEx = /^\w+#\d+$/i;
+
+  if(regEx.test(player)){
+    let response = await fetch(
+		`https://statistic-service.w3champions.com/api/ladder/search?gateWay=${server}&searchFor=${helperBattleTag(player.replace(/#/gi, "%23"))}&season=${process.env.SEASON}`
+	);
+
+  	let data = await response.json();
+    return data[0]  
+  }
+
+  let response = await fetch(
+		`https://statistic-service.w3champions.com/api/ladder/search?gateWay=${server}&searchFor=${encodeURIComponent(player)}&season=${process.env.SEASON}`
+	);
+
+	let data = await response.json();
+  let playerFound = undefined
+
+  for(let i = 0; i < data.length; i++) {
+    if(data[i].player.name.toLowerCase().substring(0, 2) === player.toLowerCase().substring(0, 2)){
+      playerFound = data[i]
+      if(data[i].player.name.toLowerCase() === player.toLowerCase()){
+        console.log(data[i].player.name.toLowerCase())
+        playerFound = data[i]
+        break;
+      }
+    }
+  }
+
+  if(playerFound === undefined){
+    return data[0]
+  }
+
+  return playerFound
+}
+
 const getLeagues = async () => {
 	const response = await fetch(`https://statistic-service.w3champions.com/api/ladder/league-constellation?season=${process.env.SEASON}`);
 	return await response.json();
@@ -115,6 +154,41 @@ const getScore = async (playerOne, playerTwo, server) => {
 		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=${process.env.SEASON}`
 	);
 	let data = await response.json();
+
+  if(data.matches.length === 0){
+    response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=9`
+	);
+  data = await response.json();
+  }
+
+  if(data.matches.length === 0){
+    response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=8`
+	);
+  data = await response.json();
+  }
+
+  if(data.matches.length === 0){
+    response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=7`
+	);
+  data = await response.json();
+  }
+
+  if(data.matches.length === 0){
+    response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=6`
+	);
+  data = await response.json();
+  }
+
+  if(data.matches.length === 0){
+    response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=5`
+	);
+  data = await response.json();
+  }
   if(data.matches.length === 0){
     response = await fetch(
 		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=4`
@@ -131,7 +205,7 @@ const getScore = async (playerOne, playerTwo, server) => {
     response = await fetch(
 		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=2`
 	);
-  data = await response.json();
+   data = await response.json();
   }
   if(data.matches.length === 0){
     response = await fetch(
@@ -153,5 +227,6 @@ module.exports = {
 	getLeagues,
 	getPlayerByName,
 	getStatsHeros,
-	getScore
+	getScore,
+  getPlayerByJustName
 };

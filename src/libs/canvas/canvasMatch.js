@@ -31,7 +31,7 @@ const canvasMatch = stats => {
 	//hero1 team1
 	ctx.drawImage(herosImages[stats.playerScores[0].heroes[0] ? stats.playerScores[0].heroes[0].icon : undefined], 100 - 90 / 2, 180, 90, 90);
 	ctx.fillText(
-		stats.playerScores[0].heroes[0] ? stats.playerScores[0].heroes[0].level : undefined,
+		stats.playerScores[0].heroes[0] ? stats.playerScores[0].heroes[0].level : "",
 		100 - ctx.measureText("1").width / 2,
 		330
 	);

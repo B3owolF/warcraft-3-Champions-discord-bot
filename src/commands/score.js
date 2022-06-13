@@ -3,23 +3,17 @@ const getScoreOfMatches = require("../libs/getScoreOfMatches");
 const canvasScore = require("../libs/canvas/canvasScore");
 const getBattleTag = require("../libs/getbattletag");
 const embedGamesIds = require("../libs/embed/embedGamesIds");
+const { helperBattleTag } = require("../libs/helper")
 
 const getScoreAmericaAndEurope = async (message, playerOne, playerTwo, server) => {
 	playerOne = await getBattleTag(playerOne, server);
 	playerTwo = await getBattleTag(playerTwo, server);
 
-	let matches = await getScore(playerOne, playerTwo, server);
+	let matches = await getScore(helperBattleTag(playerOne), helperBattleTag(playerTwo), server);
 
-	if (matches.matches.length === 0){
-    if(server === 20){
-      playerOne = await getBattleTag(playerOne, 10);
-	    playerTwo = await getBattleTag(playerTwo, 10);
-
-	    matches = await getScore(playerOne, playerTwo, 10);
-      if(matches.matches.length === 0) return message.channel.send("no statistics found");
-    }
+  if(matches.matches.length === 0) {
+    return message.channel.send('stats not found')
   }
-
 	playerOne = playerOne.replace(/%23/gi, "#");
 	playerTwo = playerTwo.replace(/%23/gi, "#");
 	const score = getScoreOfMatches(matches.matches, playerOne, playerTwo);
@@ -35,6 +29,15 @@ module.exports = {
 	alias: [],
 	run: async (client, message, args) => {
 		try {
+
+      if(args[1] !== 'vs') {
+        return message.channel.send('the word vs is required')
+      }
+
+      if(!args[0] || !args[2]){
+        return message.channel.send("you should send two player nicknames");
+      }
+
 			if (args[0] === args[2]) {
 				return message.channel.send("do not write the same name");
 			}
@@ -44,6 +47,7 @@ module.exports = {
 			}
 			return await getScoreAmericaAndEurope(message, args[0], args[2], 20);
 		} catch (err) {
+      console.log(err)
 			return message.channel.send("Error");
 		}
 	}

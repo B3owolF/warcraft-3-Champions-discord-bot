@@ -26,7 +26,10 @@ const heroesNames = {
   priestessofthemoon: "priestessofthemoon",
   warden: "warden",
   paladin: "paladin",
-  pala: "pala",
+  pala: "paladin",
+  pa: "paladin",
+  pn: "paladin",
+  pd: "paladin",
   am: "archmage",
   archmage: "archmage",
   mk: "mountainking",
@@ -34,6 +37,7 @@ const heroesNames = {
   blm: "sorceror",
   bloodmage: "sorceror",
   bem: "beastmaster",
+  beastmaster: "beastmaster",
   fl: "avatarofflame",
   firelord: "avatarofflame",
   dr: "bansheeranger",
@@ -45,6 +49,7 @@ const heroesNames = {
   panda: "pandarenbrewmaster",
   tinker: "tinker",
   alchemist: "alchemist",
+  alch: "alchemist",
   pl: "pitlord",
   pitlord: "pitlord",
   undefined: "none",
@@ -54,19 +59,19 @@ const heroesNames = {
 
 module.exports = {
   name: "statshero",
-  alias: [],
+  alias: ["herostats"],
   run: async (client, message, args) => {
     try {
       let firstHeroes = [];
       let secondHeroes = [];
-      let index = args.indexOf("vs");
+      let index = args.indexOf("v");
 
       if(!args[0]){
         return message.channel.send("you must write at least one hero's name")
       }
 
-      if (args.find(arg => arg === "v")) {
-        index = args.indexOf("v");
+      if (args.find(arg => arg === "vs")) {
+        index = args.indexOf("vs");
         for (let i = 0; i < 7; i++) {
           if (i < index && args[i]) {
             firstHeroes.push(args[i]);
@@ -91,7 +96,7 @@ module.exports = {
         );
 
         if (Math.round(stats.winrate * 100) === 0) {
-          return message.channel.send("no statistics found");
+          return message.channel.send("stats not found");
         }
         const image = canvasHeroesStats(firstHeroes, secondHeroes, stats);
         return message.channel.send(image);
@@ -117,7 +122,7 @@ module.exports = {
           heroesNames[secondHeroes[2]]
         );
         if (Math.round(stats.winrate * 100) === 0) {
-          return message.channel.send("no statistics found");
+          return message.channel.send("stats not found");
         }
         const image = canvasHeroesStats(firstHeroes, secondHeroes, stats);
         return message.channel.send(image);
@@ -141,7 +146,7 @@ module.exports = {
         heroesNames[secondHeroes[2]]
       );
       if (Math.round(stats.winrate * 100) === 0) {
-        return message.channel.send("no statistics found");
+        return message.channel.send("stats not found");
       }
       const image = canvasHeroesStats(firstHeroes, secondHeroes, stats);
       return message.channel.send(image);

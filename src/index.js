@@ -31,11 +31,10 @@ for (let file of files) {
 	client.commands.set(command.name, command);
 }
 
-client.on("ready", async () => {
+client.on("ready", () => {
 	client.user.setActivity("!help");
-	console.log("bot is ready");
+	console.log("bot is ready!!!!!!!!!");
 });
 
 eventsMessage(client);
-
 client.login(process.env.DISCORD_TOKEN);

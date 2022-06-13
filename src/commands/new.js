@@ -22,6 +22,7 @@ module.exports = {
 					let stats = await getPlayerByName(player, 10);
 					return await playerByName(player, stats, message, indexLeague);
 				} else {
+          console.log(player);
 					let stats = await getPlayerByName(player, 20);
 					const image = await canvasProfile(stats);
           return message.channel.send(image);

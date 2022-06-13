@@ -87,10 +87,17 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
     let image;
 
     if(personalSettings.profilePicture.isClassic){
+
       image = `https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/classic/${raceOfPicture["race" + personalSettings.profilePicture.race]}_${personalSettings.profilePicture.pictureId}.jpg`;
-    }if(raceOfPicture["race" + personalSettings.profilePicture.race] === "SPECIAL"){
+    }
+    if(raceOfPicture["race" + personalSettings.profilePicture.race] === "SPECIAL"){
+
       image = `https://w3champions.wc3.tools/prod/integration/icons/specialAvatars/SPECIAL_${personalSettings.profilePicture.pictureId}.jpg`
-    }if(personalSettings.profilePicture.isClassic === false && raceOfPicture["race" + personalSettings.profilePicture.race] !== "SPECIAL"){
+    }
+    if(personalSettings.profilePicture.isClassic === false 
+    && 
+    raceOfPicture["race" + personalSettings.profilePicture.race] !== "SPECIAL"){
+
       image = `https://w3champions.wc3.tools/prod/integration/icons/raceAvatars/${raceOfPicture["race" + personalSettings.profilePicture.race]}_${personalSettings.profilePicture.pictureId}.jpg`
     }
 

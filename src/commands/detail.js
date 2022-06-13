@@ -6,6 +6,9 @@ module.exports = {
 	alias: ["d"],
 	run: async (client, message, args) => {
 		try {
+      if(!args[0]){
+        return message.channel.send('you should send the match id')
+      }
 			const id = args[0];
 			const matchFound = await getMatch(id);
 			const image = canvasMatch(matchFound);

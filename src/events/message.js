@@ -10,11 +10,22 @@ const channelAllowed = message => {
 	return false;
 };
 
+const notAllowed = message => {
+  if( message.author.id === "307301391976628225" && message.channel.id === "445218410738089986"
+){
+    return true
+  }
+  return false
+}
+
 const eventsMessage = client => {
 	client.on("message", async message => {
 		try {
 			if (!message.content.startsWith(prefix)) return;
 			if (!channelAllowed(message)) return;
+      if (notAllowed(message))      return message.channel.send("Not authorized")
+
+
 			let args = message.content
 				.slice(prefix.length)
 				.trim()

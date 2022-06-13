@@ -5,7 +5,8 @@ const mmrOfLeagues = {
 	grandmaster: 2200,
 	master: 2000,
 	diamond: 1800,
-	platin: 1600,
+	platinum: 1600,
+  platin: 1600,
 	gold: 1400,
 	silver: 1200,
 	bronze: 1000,
@@ -16,19 +17,28 @@ const maps = {
 	az: "amazonia",
   amazonia: "amazonia",
 	ts: "terenasstand",
+  tslv: "terenasstand",
   terenasstand: "terenasstand",
 	tm: "twistedmeadows",
   twistedmeadows: "twistedmeadows",
+  twisted: "twistedmeadows",
 	ni: "northernisles",
   northernisles: "northernisles",
 	ch: "concealedhill",
   concealedhill: "concealedhill",
+  tidehunters: "tidehunters",
+  th: "tidehunters",
+  ruinsofazshara: "ruinsofazshara",
+  ruin: "ruinsofAzshara",
+  roa: "ruinsofazshara",
 	lr: "lastrefuge",
   lastrefuge: "lastrefuge",
 	ei: "echoisles",
   echoisles: "echoisles",
   tr: "turtlerock",
   turtlerock: "turtlerock",
+  autumnleaves: "autumnleaves",
+  al: "autumnleaves",
 	undefined: "Overall"
 };
 
@@ -51,7 +61,7 @@ const getRatio = (mmr, map, dataOfWinrate) => {
 
 module.exports = {
 	name: "winrates",
-	alias: ["wr"],
+	alias: ["wr", "winrate"],
 	run: async (client, message, args) => {
 		try {
 			const mmr = args[0];
