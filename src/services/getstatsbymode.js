@@ -9,6 +9,20 @@ const getStatsByMode = async (player, server) => {
 
     if(data.length === 0){
       response = await fetch(
+			`https://statistic-service.w3champions.com/api/players/${player}/game-mode-stats?gateWay=${server}&season=11`
+		);
+		  data = await response.json();
+    }
+
+    if(data.length === 0){
+      response = await fetch(
+			`https://statistic-service.w3champions.com/api/players/${player}/game-mode-stats?gateWay=${server}&season=10`
+		);
+		  data = await response.json();
+    }
+
+    if(data.length === 0){
+      response = await fetch(
 			`https://statistic-service.w3champions.com/api/players/${player}/game-mode-stats?gateWay=${server}&season=9`
 		);
 		  data = await response.json();
