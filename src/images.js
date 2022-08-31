@@ -2,7 +2,7 @@ const { loadImage } = require("canvas");
 const Canvas = require("canvas");
 const hero = {};
 
-hero.am = __dirname + "/assets/archmage.0e407b7b.png" 
+hero.am = __dirname + "/assets/archmage.0e407b7b.png"
 hero.mk = __dirname + "/assets/mountainking.2d45fe6d.png";
 hero.paladin = __dirname + "/assets/paladin.f595991a.png";
 hero.pala = __dirname + "/assets/paladin.f595991a.png";
@@ -13,7 +13,7 @@ hero.blm = __dirname + "/assets/sorceror.99bfe631.png";
 hero.bloodmage = __dirname + "/assets/sorceror.99bfe631.png";
 hero.fs = __dirname + "/assets/farseer.1cc45987.png";
 hero.bm = __dirname + "/assets/blademaster.a319f81a.png";
-hero.sh = __dirname + "/assets/shadowhunter.b5bfcf5c.png" 
+hero.sh = __dirname + "/assets/shadowhunter.b5bfcf5c.png"
 hero.tc = __dirname + "/assets/taurenchieftain.185f69ab.png";
 hero.dk = __dirname + "/assets/deathknight.ff560544.png";
 hero.lich = __dirname + "/assets/lich.34068253.png";
@@ -72,15 +72,19 @@ hero.concealedhill = "https://liquipedia.net/commons/images/8/8f/Concealed_Hill_
 hero.ConcealedHill = "https://liquipedia.net/commons/images/8/8f/Concealed_Hill_1.2.png";
 hero.echoisles = "https://liquipedia.net/commons/images/7/7d/Echo_Isles.png";
 hero.EchoIsles = "https://liquipedia.net/commons/images/7/7d/Echo_Isles.png";
+hero['EchoIslesv2_2'] = "https://liquipedia.net/commons/images/3/3e/Wc3EchoIsles_v2_1.png"
 hero.twistedmeadows = "https://liquipedia.net/commons/images/e/ee/Twisted_Meadows.png";
 hero.turtlerock = "https://liquipedia.net/commons/images/1/14/Turtle_Rock.png";
 hero.TurtleRock = "https://liquipedia.net/commons/images/1/14/Turtle_Rock.png";
 hero.AutumnLeaves = "https://liquipedia.net/commons/images/e/e8/Wc3AutumnLeaves.png";
 hero.autumnleaves = "https://liquipedia.net/commons/images/e/e8/Wc3AutumnLeaves.png";
+hero['AutumnLeavesv2-0'] = "https://liquipedia.net/commons/images/e/e8/Wc3AutumnLeaves.png";
+hero['AutumnLeavesv2_0'] = "https://liquipedia.net/commons/images/e/e8/Wc3AutumnLeaves.png";
 hero.amazonia = "https://liquipedia.net/commons/images/3/38/Amazonia.png";
 hero.Amazonia = "https://liquipedia.net/commons/images/3/38/Amazonia.png";
 hero.tidehunters = "https://liquipedia.net/commons/images/6/60/Wc3TortoiseHaven.png"
 hero.Tidehunters = "https://liquipedia.net/commons/images/6/60/Wc3TortoiseHaven.png"
+hero['Tidehuntersv1_2'] = "https://liquipedia.net/commons/images/6/60/Wc3TortoiseHaven.png"
 hero.ShallowGrave = 'https://liquipedia.net/commons/images/4/49/Wc3ShallowGrave.png'
 hero.ruinsofazshara = "https://liquipedia.net/commons/images/4/47/RuinsOfAzshara.png"
 hero.RuinsOfAzshara = "https://liquipedia.net/commons/images/4/47/RuinsOfAzshara.png"
@@ -229,13 +233,13 @@ hero.PLATINUM = __dirname + "/assets/leagueIcons/platinum.png";
 hero.SILVER = __dirname + "/assets/leagueIcons/silver.png";
 
 const loadImagesCanvas = async () => {
-	for (const property in hero) {
-		hero[property] = await loadImage(hero[property]);
-	}
+  for (const property in hero) {
+    hero[property] = await loadImage(hero[property]);
+  }
 };
 
 loadImagesCanvas().then(() => {
-	console.log(hero);
+  console.log(hero);
 });
 
 module.exports = hero;

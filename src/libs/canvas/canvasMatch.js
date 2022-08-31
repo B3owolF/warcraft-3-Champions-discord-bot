@@ -94,7 +94,8 @@ const canvasMatch = stats => {
 		330
 	);
 
-	ctx.drawImage(herosImages[stats.match.map], canvas.width / 2 - 180 / 2, 180, 180, 180);
+	ctx.drawImage(herosImages[stats.match.map],  
+  canvas.width / 2 - 180 / 2, 180, 180, 180);
 
 	ctx.font = "30px Arial";
 	ctx.fillStyle = "#fff";
