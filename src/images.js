@@ -68,6 +68,7 @@ hero.pitlord = __dirname + "/assets/pitlord.5440e70a.png";
 hero.seawitch = __dirname + "/assets/seawitch.a5226e9b.png";
 hero.tinker = __dirname + "/assets/tinker.04662773.png";
 hero.alchemist = __dirname + "/assets/alchemist.f624263a.png";
+hero['Springtimev1_2'] = "https://liquipedia.net/commons/images/c/c1/Wc3SpringTime.png"
 hero.concealedhill = "https://liquipedia.net/commons/images/8/8f/Concealed_Hill_1.2.png";
 hero.ConcealedHill = "https://liquipedia.net/commons/images/8/8f/Concealed_Hill_1.2.png";
 hero.echoisles = "https://liquipedia.net/commons/images/7/7d/Echo_Isles.png";
