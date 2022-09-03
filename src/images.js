@@ -97,6 +97,7 @@ hero.northernisles = "https://liquipedia.net/commons/images/4/45/Northern_Isles.
 hero.NorthernIsles = "https://liquipedia.net/commons/images/4/45/Northern_Isles.png";
 hero.ruinsofazshara201016 = "https://liquipedia.net/commons/images/4/47/RuinsOfAzshara.png";
 hero['RustyCreekv1_1'] = "https://liquipedia.net/commons/images/6/6f/Wc3RustyCreek.png"
+hero['SecretValleyv2_0a'] = "https://liquipedia.net/commons/images/e/e4/Wc3SecretValley2.png";
 hero.Overall = __dirname + "/assets/all.d725e22d.png";
 hero.all = __dirname + "/assets/all.d725e22d.png";
 //hero.avatarTrue32 = __dirname + "/assets/special";
