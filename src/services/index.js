@@ -155,6 +155,20 @@ const getScore = async (playerOne, playerTwo, server) => {
 	);
 	let data = await response.json();
 
+      if(data.matches.length === 0){
+    response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=11`
+	);
+  data = await response.json();
+  }
+
+      if(data.matches.length === 0){
+    response = await fetch(
+		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=10`
+	);
+  data = await response.json();
+  }
+
   if(data.matches.length === 0){
     response = await fetch(
 		`https://statistic-service.w3champions.com/api/matches/search?playerId=${playerOne}&gateway=${server}&offset=0&opponentId=${playerTwo}&pageSize=50&gameMode=1&season=9`
