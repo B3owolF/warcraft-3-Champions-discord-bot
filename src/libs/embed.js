@@ -154,7 +154,7 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
         },
         {
           name: "RP",
-          value: stats.rankingPoints,
+          value: Math.floor(stats.rankingPoints),
           inline: true,
         }
       );
@@ -179,7 +179,7 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
         },
         {
           name: "RP",
-          value: stats.rankingPoints,
+          value: Math.floor(stats.rankingPoints),
           inline: true,
         }
       );
@@ -204,7 +204,7 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
         },
         {
           name: "RP",
-          value: stats.rankingPoints,
+          value: Math.floor(stats.rankingPoints),
           inline: true,
         }
       );
@@ -229,7 +229,7 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
         },
         {
           name: "RP",
-          value: stats.rankingPoints,
+          value: Math.floor(stats.rankingPoints),
           inline: true,
         }
       );
@@ -254,7 +254,7 @@ const playerEmbed = async (name, stats, message, indexLeague) => {
         },
         {
           name: "RP",
-          value: stats.rankingPoints,
+          value: Math.floor(stats.rankingPoints),
           inline: true,
         }
       );
@@ -410,7 +410,7 @@ const playerByName = async (name, stats, message, indexLeague) => {
         },
         {
           name: "RP",
-          value: stats.rankingPoints,
+          value: Math.floor(stats.rankingPoints),
           inline: true,
         }
       );
@@ -435,7 +435,7 @@ const playerByName = async (name, stats, message, indexLeague) => {
         },
         {
           name: "RP",
-          value: stats.rankingPoints,
+          value: Math.floor(stats.rankingPoints),
           inline: true,
         }
       );
@@ -460,7 +460,7 @@ const playerByName = async (name, stats, message, indexLeague) => {
         },
         {
           name: "RP",
-          value: stats.rankingPoints,
+          value: Math.floor(stats.rankingPoints),
           inline: true,
         }
       );
@@ -485,7 +485,7 @@ const playerByName = async (name, stats, message, indexLeague) => {
         },
         {
           name: "RP",
-          value: stats.rankingPoints,
+          value: Math.floor(stats.rankingPoints),
           inline: true,
         }
       );
@@ -510,7 +510,7 @@ const playerByName = async (name, stats, message, indexLeague) => {
         },
         {
           name: "RP",
-          value: stats.rankingPoints,
+          value: Math.floor(stats.rankingPoints),
           inline: true,
         }
       );
