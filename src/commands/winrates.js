@@ -4,12 +4,14 @@ const getWinrates = require("../services/getStatsOfPatchMapsAndRace");
 const mmrOfLeagues = {
 	grandmaster: 2200,
 	master: 2000,
-	diamond: 1800,
-	platinum: 1600,
-  platin: 1600,
-	gold: 1400,
-	silver: 1200,
+	adept: 1800,
+	diamond: 1600,
+	platinum: 1400,
+  	platin: 1400,
+	gold: 1200,
+	silver: 1000,
 	bronze: 1000,
+	grass: 1000,
 	undefined: 0
 };
 
@@ -69,7 +71,6 @@ module.exports = {
 			let ratio;
 			let image;
 			const dataOfWinrate = await getWinrates();
-
 			if ((!mmr && !map) || (mmr && map)) {
 				ratio = getRatio(mmr, map, dataOfWinrate);
 				image = canvasWinrates(ratio[1], ratio[2], ratio[3], ratio[4], maps[map]);

@@ -36,6 +36,8 @@ hero.tinker = __dirname + "/assets/tinker.04662773.png";
 hero.alchemist = __dirname + "/assets/alchemist.f624263a.png";
 hero.alch = __dirname + "/assets/alchemist.f624263a.png";
 hero.background = __dirname + "/assets/background.jpg";
+hero.background20 = __dirname + "/assets/background2.jpg";
+
 
 hero.undefined = __dirname + "/assets/none.e9b22af6.png";
 hero.race1 = __dirname + "/assets/HUMAN.86b68278.png";
