@@ -7,7 +7,7 @@ module.exports = (human, orc, undead, nightElf, map) => {
 	const canvas = Canvas.createCanvas(1000, 1200);
 	const ctx = canvas.getContext("2d");
 
-	ctx.drawImage(herosImages["background"], 0, 0, canvas.width, canvas.height);
+	ctx.drawImage(herosImages["background20"], 0, 0, canvas.width, canvas.height);
 
 	for (let x = 0; x <= 1000; x = x + 200) {
 		ctx.moveTo(x, 200);
