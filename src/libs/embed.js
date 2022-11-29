@@ -635,54 +635,29 @@ const helpEmbed = (message) => {
   let embed = new Discord.MessageEmbed();
   embed.setColor("#0099ff").setTitle("Commands").addFields(
     {
-      name: "!profile or !stats name",
-      value: "Example: !profile Grubby",
-    },
-    {
-      name: "!vs name battleTag",
-      value: "Example: !vs Grubby 1278",
-    },
-    {
-      name: "!Ranking league server",
-      value: "Example: !Ranking Grand Master Europe",
-    },
-    {
-      name: "!Matches server",
-      value: "Example: !Matches Europe",
-    },
-    {
-      name: "!score playerOne vs playerTwo",
-      value: "Example: !score grubby vs xlord",
-    },
-    {
       name: "!herolist",
-      value: "!herolist",
+      value: "Use this command first to discover how each hero should be written or abbreviated so the bot understands it.",
     },
     {
-      name: "!statshero hero vs hero",
-      value: "!statshero bm vs am",
+      name: "!profile [player]",
+      value: "Print player profile.",
     },
     {
-      name: "!detail id",
-      value: "Example: !detail 5fb02f27ef7438b9a522715b",
+      name: "!mh [player]",
+      value: "Print a list of the 24 most recent games in a player's match history including Match IDs.",
     },
     {
-      name: "!statsbymode or !sbm name",
-      value: "Example: !statsbymode grubby",
+      name: "!score [player] vs [player]",
+      value: "Print aggregated matches between two players. !detail [match ID] Print details about a match. Find match ID with !mh or on https://w3champions.com/",
     },
     {
-      name: "!statsbyrace or !sbr name",
-      value: "Example: !statsbyrace grubby",
+      name: "!statshero [hero1] [hero2] [hero3] vs [hero1] [hero2] [hero3]",
+      value: "Print winrates of specific hero matchups over all W3C games.",
     },
     {
-      name: "!matchhistory or !mh name",
-      value: "Example: !mh grubby",
+      name: "!wr [map]",
+      value: "Print winrates of all matchups on a specific map.",
     },
-    {
-      name: "!winrates or !wr",
-      value:
-        "example: !wr grandmaster or !wr grandmaster lastrefuge or just !wr",
-    }
   );
   message.channel.send(embed);
 };
